@@ -1,0 +1,42 @@
+docker commands
+
+run images
+1. docker run image-name
+2. docker run image-name echo hello world  - (override command)
+3. docker run image-name npm start   - (override command)
+
+list containers
+1. docker ps  - (only running containers)
+2. docker ps --all  - (all container including shut down containers)
+
+create container
+1. docker create image-name
+
+start container
+1. docker start -a image-id  (-a here give logs)
+
+remove container
+1. docker system prune (delete all container and networking)
+
+retrieve logs
+1. docker logs container-id
+
+stop container
+1. docker stop container-id
+2. docker kill container-id
+
+run additional commands inside container
+1. docker exec it container-id sh
+2. docker run it conatainer-id sh (this will create new container)
+
+create image
+1. docker build .
+2. docker build -t dockerAccountId/repoName:version .  (tagging image)
+
+port mapping
+1. docker run -p 3000:8080 image-id  - (outside:insidecontainer) - localhost:3000 
+
+docker compose
+1. docker-compose up (start)
+2. docker-compose up --build (rebuild)
+3. docker-compose down (stop)
