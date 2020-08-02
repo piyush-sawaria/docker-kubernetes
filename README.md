@@ -1,5 +1,5 @@
 # docker-kubernetes
-Docker single container
-Docker multi container
-Travis CI
-Kubernetes
+1. Docker single container
+2. Docker multi container
+3. Travis CI
+4. Kubernetes
