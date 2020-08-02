@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t piyushsawaria1/react-test -f ./complex/client/Dockerfile.dev ./complex/client
+
+script:
+  - docker run -e CI=true piyushsawaria1/react-test npm test
+
+after_success:
+  - docker build -t piyushsawaria1/multi-client ./complex/client
+  - docker build -t piyushsawaria1/multi-nginx ./complex/nginx
+  - docker build -t piyushsawaria1/multi-server ./complex/server
+  - docker build -t piyushsawaria1/multi-worker ./complex/worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push piyushsawaria1/multi-client
+  - docker push piyushsawaria1/multi-nginx
+  - docker push piyushsawaria1/multi-server
+  - docker push piyushsawaria1/multi-worker
