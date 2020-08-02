@@ -4,6 +4,7 @@ run images
 1. docker run image-name
 2. docker run image-name echo hello world  - (override command)
 3. docker run image-name npm start   - (override command)
+4. docker run -it -p 3000:3000 container-id (to run local build container)
 
 list containers
 1. docker ps  - (only running containers)
@@ -32,6 +33,7 @@ run additional commands inside container
 create image
 1. docker build .
 2. docker build -t dockerAccountId/repoName:version .  (tagging image)
+3. docker build -f Dockerfile.dev . (building image from customize dockerfile name)
 
 port mapping
 1. docker run -p 3000:8080 image-id  - (outside:insidecontainer) - localhost:3000 
@@ -40,3 +42,6 @@ docker compose
 1. docker-compose up (start)
 2. docker-compose up --build (rebuild)
 3. docker-compose down (stop)
+
+docker volume (to refer folder inside container to folder outside container)
+1. docker run -p 3000:3000 -v /app/node_module -v $(pwd):/app container-id
